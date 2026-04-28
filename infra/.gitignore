@@ -1,0 +1,34 @@
+# Terraform state files (NEVER COMMIT)
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# Terraform directories
+.terraform/
+.terraform.lock.hcl
+
+# Variable files (local secrets)
+terraform.tfvars
+terraform.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+
+# Override files (local-only overrides)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI config
+.terraformrc
+terraform.rc
+
+# Sensitive env files (optional but common)
+.env
+.env.*
+
+# OS / editor junk
+.DS_Store
+.vscode/
+.idea/
