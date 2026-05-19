@@ -42,7 +42,7 @@ resource "cloudflare_record" "root" {
   name    = "@"
   type    = "CNAME"
   content = "cname.vercel-dns.com"
-  proxied = false
+  proxied = true
 }
 ```
 
@@ -54,6 +54,26 @@ resource "cloudflare_record" "www" {
   name    = "www"
   type    = "CNAME"
   content = "cname.vercel-dns.com"
+  proxied = true
+}
+```
+
+## Blog subdomain
+
+```hcl
+resource "cloudflare_record" "blog_a_1" {
+  zone_id = var.zone_id
+  name    = "blog"
+  type    = "A"
+  content = "162.159.153.4"
+  proxied = false
+}
+
+resource "cloudflare_record" "blog_a_2" {
+  zone_id = var.zone_id
+  name    = "blog"
+  type    = "A"
+  content = "162.159.152.4"
   proxied = false
 }
 ```
@@ -124,9 +144,10 @@ terraform {
 ```bash
 dig jabercrombia.com
 dig www.jabercrombia.com
+dig blog.jabercrombia.com
 ```
 
-Expected: CNAME resolution via Cloudflare edge
+Expected: CNAME resolution via Cloudflare edge for root/www; A record resolution for blog
 
 ---
 
